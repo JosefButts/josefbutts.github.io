@@ -54,13 +54,13 @@ let newString = wow.slice(1, 5);
 console.log(newString); // prints 'owow'
 
 //to return a new string starting from the end to the beginning use negavtive numbers
-console.log(wowslice(-12, -6); //prints !!!owo
+console.log(wow.slice(-12, -6)); //prints !!!owo
 
-        //substring is like slice but doesn't take negative indexes
-        console.log(wow.substring(4, 6)); // prints 'wo'
+//substring is like slice but doesn't take negative indexes
+console.log(wow.substring(4, 6)); // prints 'wo'
 
-        //substr() is similar to slice but accepts 2 parameters,
-        //the second specifying the length of the extracted string
-        console.log(wow.substring(2, 5)); //prints 'wowow'
+//substr() is similar to slice but accepts 2 parameters,
+//the second specifying the length of the extracted string
+console.log(wow.substring(2, 5)); //prints 'wowow'
 
-        //replace()
+//replace()

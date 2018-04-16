@@ -18,6 +18,9 @@ let string = 'word';
 3. Boolean: reprents either true or false
 */
 let myBool = true;
+if (myBool) {
+    console.log('It\'s true ');
+}
 
 /*  
 4. null has only one value which is null. It is used when an objects value is intentianlly left blank or unassigned
@@ -90,10 +93,15 @@ function closureDemo(parameter1) {
 /*
 Infinity and - Infinity(Google them
         if you don 't know!)        
-        .
-       
+
+infinity IS A property of the global scope that represents infinity 
+and is greater than any number. Any number divided by inifinity = 0
+
+negative infinity represents the negative infinity value
 
 */
+
+
 /*  What is the difference between simple and complex data types ?
     Well, thanks for asking! 
          Simple data datypes are :
