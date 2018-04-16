@@ -71,4 +71,4 @@ functionVar = 2345; //will cause error, functionVar inaccessible from global sco
 
 
 /* Primitive dataypes are passed into functions by copy, complex datatypes by
-reference
+reference.*/

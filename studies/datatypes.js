@@ -78,7 +78,7 @@ function testFunction(parameter1, parameter2) {
     return something;
 }
 /*
-    functions can also be used to return other functions which is the basis for closures
+    functions can also be used to return other functions which is the basis for closures.
 */
 function closureDemo(parameter1) {
     return function testFunction(parameter2) {

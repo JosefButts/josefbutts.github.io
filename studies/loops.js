@@ -28,7 +28,7 @@ for (let i 0; i < 101; i++) {
 }
 
 /*  for-in loops: this loops provdes a way to loop over the (enumerable) properties
-of an object. For each property javascript executes the provided statements
+of an object. For each property javascript executes the provided statements.
 */
 let randomObject = {
     shoes: 'old',

@@ -12,7 +12,7 @@ Assignment operator '=' assigns the lefthand value to the right hand variable.
 */
 let variable = 'Look here!';
 
-/*comparison operators compare two valuesoperands and returns a boolean value
+/*comparison operators compare two valuesoperands and returns a boolean value.
 
 Equal (==)
 Strict Equal (===)
@@ -29,11 +29,11 @@ let x = 1 + 1; //addition
 let y = 1 - 1; // subtraction
 let z = 1 / 1; //division
 let a = 1 * 2; // multiplication
-let b = 10 % 5;// mod returns a remainder from division by te 2 operands
+let b = 10 % 5; // mod returns a remainder from division by te 2 operands
 ++ //incremento, adds 1
 -- // decrement, adds 2
- 
- 
+
+
 //Logical operators: && and ||, typically used wih boolean values and return a boolean when they are
 // The can be used with non-booelan values and return a non-bolean value if so//ex:
 
@@ -47,6 +47,3 @@ let b = 10 % 5;// mod returns a remainder from division by te 2 operands
 
 //Binary operators
 /* These take 2 oper
-
-
-

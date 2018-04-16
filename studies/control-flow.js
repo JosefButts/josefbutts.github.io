@@ -69,7 +69,7 @@ else {
 /*
 The switch conditional evaluats an expression and attempt to match the result
 to one of the provided case values. If one of the case values matches the 
-corresponding code block is executed
+corresponding code block is executed.
 */
 let switchTest = 12345;
 switch (switchTest) {
