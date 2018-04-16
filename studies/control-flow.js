@@ -85,8 +85,8 @@ switch (switchTest) {
     default:
         console.log('This is what happens if nothing matches the case');
 }
-
+/*
 https: //developer.mozilla.org/en-US/docs/Glossary/Control_flow
 
     -A control flow statement is one that one that execution results in a choice being
-made over which of 2 or more paths to follow * /
+made over which of 2 or more paths to follow */

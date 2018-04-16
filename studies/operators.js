@@ -30,20 +30,28 @@ let y = 1 - 1; // subtraction
 let z = 1 / 1; //division
 let a = 1 * 2; // multiplication
 let b = 10 % 5; // mod returns a remainder from division by te 2 operands
-++ //incremento, adds 1
--- // decrement, adds 2
+b++; //incremento, adds 1
+b--; // decrement, adds 2
 
 
 //Logical operators: && and ||, typically used wih boolean values and return a boolean when they are
 // The can be used with non-booelan values and return a non-bolean value if so//ex:
 
-13 == 13 && 12 == 12; // returns true
+13 === 13 && 12 === 12; // returns true
 
 13 == 13 || 12 == 12; // returns true
 
 
 // Binary (!, typeOf, -)
-// Turnary (a ? b : c)
+
+
+// Turnary (a ? b : c) these operators take 3 values, first a condition to be 
+// evaluated separated by a question mark from two values, the first value will 
+//return is a is true, the second if a is false
+
+(50 < 120) ? 'This is true' : 'This is not true'; //returns 'This is true'
+(50 === 120) ? 'This is true' : 'This is not true' // returns 'This is not true'
+
 
 //Binary operators
-/* These take 2 oper
+/* These take 2 oper */

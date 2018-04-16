@@ -84,7 +84,7 @@ function closureDemo(parameter1) {
     return function testFunction(parameter2) {
         let something = parameter1 + parameter2;
         return something;
-    }
+    };
 }
 
 /*
@@ -104,4 +104,4 @@ Infinity and - Infinity(Google them
         Complex data types are collections of properties
         1. Objects are the source of all complex data types. They containg multiple ket value pairs
             These values and keys can be altered, added to, deleted, etc
-        2. An array is atype of object but desigend to store information in a numerically based, 0 indexed fashion.
+        2. An array is atype of object but desigend to store information in a numerically based, 0 indexed fashion. */
