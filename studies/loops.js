@@ -27,7 +27,7 @@ for (let i 0; i < 101; i++) {
     console.log(i); // will log 1 through 100
 }
 
-/* for-in loops: this loops provdes a way to loop over the (enumerable) properties
+/*  for-in loops: this loops provdes a way to loop over the (enumerable) properties
 of an object. For each property javascript executes the provided statements
 */
 let randomObject = {
