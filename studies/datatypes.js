@@ -89,7 +89,8 @@ function closureDemo(parameter1) {
 
 /*
 Infinity and - Infinity(Google them
-        if you don 't know!)
+        if you don 't know!)        
+        .
        
 
 */
