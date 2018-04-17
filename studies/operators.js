@@ -13,17 +13,25 @@ Assignment operator '=' assigns the lefthand value to the right hand variable.
 let variable = 'Look here!';
 
 /*comparison operators compare two valuesoperands and returns a boolean value.
+ */
+//Equal (==)
+12 == '12'; // evaluates to true
+//Strict Equal (===)
+12 === '12'; //evaluates to false
+//NOt equal (!=)
+5 != 6; // evaluates to true
+//Strict not equal (!==)
+5 !== '5'; // evaluates to true
+//Greater than (>)
+5 > 2; // evaluates to true
+//Less than (<)
+3 < 1; //evaluates to false
+//Greater than or equal to (>=)
+12 >= 12; //// evaluates to true
+//Less than or equal to (<=)
+234 <= 400; //// evaluates to true
 
-Equal (==)
-Strict Equal (===)
-NOt equal (!=)
-Strict not equal (!==)
-Greater than (>)
-Less than (<)
-Greater than or equal to (>=)
-Less than or equal to (<=)
-
-Arimetic operators take two operans and return a numberical value*/
+//Arimetic operators take two operands and return a numberical value*/
 
 let x = 1 + 1; //addition
 let y = 1 - 1; // subtraction
@@ -39,11 +47,15 @@ b--; // decrement, adds 2
 
 13 === 13 && 12 === 12; // returns true
 
-13 == 13 || 12 == 12; // returns true
+13 == 13 || 12 == 12; // returns true 
 
 
 // Binary (!, typeOf, -)
+//typeof returns the typeof data given
+let answer = typeof true;
+console.log(answer);
 
+//
 
 // Turnary (a ? b : c) these operators take 3 values, first a condition to be 
 // evaluated separated by a question mark from two values, the first value will 
@@ -51,6 +63,7 @@ b--; // decrement, adds 2
 
 (50 < 120) ? 'This is true' : 'This is not true'; //returns 'This is true'
 (50 === 120) ? 'This is true' : 'This is not true' // returns 'This is not true'
+
 
 
 //Binary operators
