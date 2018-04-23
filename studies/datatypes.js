@@ -3,11 +3,12 @@
 In Javascript there are 6 primitive datatypes:
 1. Number, 2. Boolean, 3. String, 4. null, 5. Undefined, 6. Symbol (ES6)
 
-1. Number: Represents numbers ex: 1, 23, -234, etc, also includes inifinity, -infinity, and Nan- not a number
+1. Number: Represents numbers ex: 1, 23, -234, etc, also includes inifinity, 
+-infinity, and Nan- not a number
 */
 var num = 234;
 /*
-2. String: represents textual data like 'dog' or 'sandbox' and is 0-indexed, length of a string is the numbre of elements in it
+2. String: represents textual data like 'dog' or 'sandbox' and is 0-indexed, length of a string is the number of characters in it
  In JS, strings are immutable (not so in some other languages). strings can be concatenated or you can creat new strings by 
  perfoming operations on a string
  */
@@ -23,20 +24,22 @@ if (myBool) {
 }
 
 /*  
-4. null has only one value which is null. It is used when an objects value is intentianlly left blank or unassigned
+4. null has only one value which is null. It is assigned as an intentional lack of value
 */
-let leftValeOffOnPurpose = null;
-console.log(leftValeOffOnPurpose);
+let leftValueOffOnPurpose = null;
+console.log(leftValueOffOnPurpose);
 
 /*
 
-5. undefined - a value assigned to values which are declared but not assigned
+5. undefined - this means a variable has been declared but has not been assigned.
+     it can also be returned if you try to access a property of an object which 
+     does not exist
 
 */
 let fact;
 console.log(fact); //undefined
 
-/*6. symbol- a type of primitive datatype which can be used to make properties anonymous
+/*
 
 Nan - represents a value that is not a number
 
@@ -68,6 +71,11 @@ let awesomeObject = {
 console.log(awesomeObject['name']);
 //accessing a value using dot notation
 console.log(awesomeObject.rank);
+//dot notation should be used when the object key is known 
+//bracket notation should be used to access objects values when this needs
+//to be done dynamically as in a loop or using a variable in place of the object key
+
+
 //adding a key value pair to the object using bracket notation
 awesomeObject['dog owner'] = false;
 

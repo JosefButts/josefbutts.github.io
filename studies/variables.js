@@ -72,21 +72,15 @@ function eat() {
     // will not be processed until the function executes;
 }
 
-/*    
-    5. (Theoretically, according to MDN network) Declared variables are "nonconfigurable pporperty of their execution context" ie they can't be deleted
-        -undeclared variabls are configurable-can be deleted ???
-*/
-// var color = 'red'; //declared and assigned
-// var shape = 'triangle'; //undeclared assignment
 
-// delete this.color; //suppossed to render typeerror
-// delete this.shape;
 
-//console.log(color, shape);  //suppossed to print = 'red' followed by 'undefined'. Didn't do this in my console!!!
 
 // var, let, const
 /* There three distinctions when declaring a variable
-The 'let' statement allows you to declare a block scope variable. 'let' doesn't hoist
+
+LET: 
+    The 'let' statement allows you to declare a block scope variable.
+    'let' will NOT hoist to their code block
 */
 let weather = 'sunny';
 let cloudy = true;
@@ -95,22 +89,27 @@ if (cloudy === true) {
     console.log(weather); // logs 'cloudy'
 }
 console.log(weather); // logs 'sunny'
+
+
 /*
-Const is used to declare a variable which is block scoped and cannot be reassigned or redeclared
+Const is used to declare a variable which is block scoped and WILL hoist to the top of the block scope. Const and cannot be reassigned or redeclared.
+const names should be written in all caps to signal that thie variable is a const
 */
 
-const planetShape = 'sphere';
-//planetShape = 'flat'; //"TypeError: Assignment to constant variable.
+const PLANETSHAPE = 'sphere';
+
+//trying to reassign a const will result in the error: "TypeError: Assignment to constant variable.
 
 /*Var 
-Var is used to declare a variable and its scope is the scope of teh current execution context. Var s hoisted and cand
+Var is used to declare a variable and its scope is the scope of the current execution context. Var s hoisted and can
 be redeclared
 */
 var x = "the letter x";
 
 
-/* Hoisting,  mentioned above, is caused by the fact that variable declaritions and processed before any
-code is executed. This causes the variable to be declared though the assignments are not hoisted, and do not execute until the their code executes
+/* Hoisting,  mentioned above, is caused by the fact that variable declaritions are processed before any
+code is executed. This causes the variable to be hoisted to the top of the scope 
+though the assignments are not and do not execute until the their code executes
 
 */
 
@@ -119,16 +118,17 @@ var x = 123; //
 console.log(x); // logs 123 
 
 
-/* Closure: Closure is cause by using functions which 'enclose' variables from outer functions, effectively
-utilizing information from scopes that don't exist after the return of teh outer functions
-Closure's have acces to three scopes: 1. the outer function's scope, 2. The function's scope, and 3. The global scope
+/* Closure: Closure is cause by using functions which 'enclose' variables from outside their scope, effectively
+utilizing information from scopes that don't exist after the return of the outer functions
+Closure's have access to three scopes: 1. the outer function's scope, 2. The function's scope, and 3. The global scope
 
-Closures are functions which return functions
+
 
 A fancier of way of saying this, via mdn is "A closure is the combination of a function and the lexical environment 
 within which that function was declared." Very fancy indeed!
 
-Closures can be utilized to make private variables which are not accesible from outside the function
+Closures can be also utilized to make private variables which are not accesible from outside the function
+That being said, variable declared inside a function are not accessible from outside the function.
 
 */
 

@@ -11,7 +11,7 @@ Loops are addressed in the attached loops section of this document.
 Conditional Statements: Statements that are executed depending on the results of the conditions being
 evaluated. Javascript has the if, if-else, else if, and switch conditionals.
  
-if-else statements: a statement in which if the first condition 'if' is evaluated as true the 'if' code block executes.
+if statements: a statement in which if the first condition 'if' is evaluated as true the 'if' code block executes.
 If this first 'if' condition evaluates to false the computer then executes the 'else' statement if one is present. The condition
 can be any condition that evaluates to true or false (boolean). */
 

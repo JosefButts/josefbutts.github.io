@@ -19,12 +19,12 @@ false, at which point the code stops executing. for loops are made in the follow
          code to execute
     }
     
-    
+    Infinite loops could occur in a for loop if the condition never becomes false
 */
 
 for (let i = 0; i < 101; i++) {
 
-    console.log(i); // will log 1 through 100
+    console.log(i); // will log 0 through 100
 }
 
 /*  for-in loops: this loops provdes a way to loop over the (enumerable) properties

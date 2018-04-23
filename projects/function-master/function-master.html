@@ -143,8 +143,8 @@
 
     /* global dedup */
     QUnit.test( "dedup() : Should take an array and return an array with all the duplicates removed", function( assert ) {
-      var arrayOne = [1,2,2,2,3,4,5,5,5,5,"a","b","b","b","c"];
-      var arrayTwo = ["hello", "hello", "hello", "hello", "hello", "world", "hello", "world", "world", "world"];
+      vararrayOne = [1, 2, 2, 2, 3, 4, 5, 5, 5, 5, "a", "b", "b", "b", "c"];
+       var arrayTwo = ["hello", "hello", "hello", "hello", "hello", "world", "hello", "world", "world", "world"];
       assert.deepEqual(dedup(arrayOne), [1,2,3,4,5,"a","b","c"]);
       assert.deepEqual(dedup(arrayTwo), ["hello", "world"]);
     });
