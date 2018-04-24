@@ -21,6 +21,11 @@ var _ = {};
  *   _.identity({a: "b"}) === {a: "b"}
  */
 
+_.identity = function(anything) {
+    return anything;
+
+};
+
 
 
 
@@ -44,6 +49,18 @@ var _ = {};
  * _.typeOf([1,2,3]) -> "array"
  */
 
+_.typeOf = function(anything) {
+    if (Array.isArray(anything)) {
+        return 'array';
+    }
+    else if (anything === null) {
+        return 'null';
+    }
+    else {
+        return typeof anything;
+    }
+};
+
 
 /** _.first()
  * Arguments:
@@ -62,7 +79,26 @@ var _ = {};
  *   _.first(["a", "b", "c"], 1) -> "a"
  *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
  */
+_.first = function(array, number) {
+    if (!Array.isArray(array) || number < 1) { //filter out non arrays
+        return [];
+    }
+    else if (number === undefined || isNaN(number)) {
+        return array[0];
+    }
+    else if (number > array.length) {
+        return array;
+    }
+    else {
+        var newArray = [];
+        for (var i = 0; i < number; i++) {
+            newArray.push(array[i]);
+        }
+        return newArray;
 
+    }
+
+};
 
 /** _.last()
  * Arguments:
@@ -82,7 +118,26 @@ var _ = {};
  *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
  */
 
+_.last = function(array, number) {
+    if (!Array.isArray(array) || number < 1) { //filter out non arrays
+        return [];
+    }
+    else if (number === undefined || isNaN(number)) {
+        return array[array.length - 1];
+    }
+    else if (number > array.length) {
+        return array;
+    }
+    else {
+        var newArray = [];
+        for (var i = array.length - 2; i < array.length; i++) {
+            newArray.push(array[i]);
 
+        }
+        return newArray;
+
+    }
+};
 /** _.each()
  * Arguments:
  *   1) A collection
@@ -98,6 +153,23 @@ var _ = {};
  *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
  *      -> should log "a" "b" "c" to the console
  */
+_.each = function(collection, givenFunction) {
+    if (Array.isArray(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+            var element = collection[i];
+            givenFunction(element, i, collection);
+        }
+    }
+    else {
+        for (var key in collection) {
+            givenFunction(collection[key], key, collection);
+        }
+    }
+
+};
+
+
+
 
 
 /** _.indexOf()
@@ -116,6 +188,15 @@ var _ = {};
  *   _.indexOf(["a","b","c"], "d") -> -1
  */
 
+_.indexOf = function(array, value) {
+    var index = -1;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            return i;
+        }
+    }
+    return index;
+};
 
 /** _.filter()
  * Arguments:
@@ -132,7 +213,16 @@ var _ = {};
  * Extra Credit:
  *   use _.each in your implementation
  */
-
+_.filter = function(array, action) {
+    var trueArray = [];
+    for (var i = 0; i < array.length; i++) {
+        var element = array[i];
+        if (action(element, i, array)) {
+            trueArray.push(element);
+        }
+    }
+    return trueArray;
+};
 
 /** _.reject()
  * Arguments:
@@ -146,7 +236,16 @@ var _ = {};
  * Examples:
  *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
  */
-
+_.reject = function(array, action) {
+    var falseArray = [];
+    for (var i = 0; i < array.length; i++) {
+        var element = array[i];
+        if (!action(element, i, array)) {
+            falseArray.push(array[i]);
+        }
+    }
+    return falseArray;
+}
 
 /** _.partition()
 * Arguments:
@@ -166,7 +265,22 @@ var _ = {};
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+_.partition = function(array, action) {
+    var trueFalse = [];
+    var trueArr = [];
+    var falseArr = [];
+    for (var i = 0; i < array.length; i++) {
+        var element = array[i];
+        if (action(element, i, array)) {
+            trueArr.push(array[i]);
+        }
+        else {
+            falseArr.push(array[i]);
+        }
+    }
+    trueFalse.push(trueArr, falseArr);
+    return trueFalse;
+};
 
 /** _.unique()
  * Arguments:
@@ -177,6 +291,32 @@ var _ = {};
  * Examples:
  *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
  */
+_.unique = function(array) {
+
+    var dupArray = array;
+
+    for (var i = dupArray.length - 1; i > -1; i--) {
+        var valueSought = dupArray[i]; // value to search for duplicates
+        // var tempArray = array.splice(i, 1); //temp array with current search item removed
+        var indexDuplicated = _.indexOf(dupArray, valueSought);
+        console.log("dup value is: " + dupArray[indexDuplicated] + " index is : " + i);
+        console.log('dupArray ' + dupArray);
+
+        //if the current array element is duplicated splice out thie current element
+        if (indexDuplicated > -1 && indexDuplicated !== i) {
+            // dupArray[i] = 'deleted!';
+            dupArray.splice(i, 1);
+            // noDupArray.push(array[i]);
+            console.log('dupArray ' + dupArray);
+
+        }
+
+
+    }
+    return dupArray;
+
+};
+
 
 
 /** _.map()
@@ -195,6 +335,23 @@ var _ = {};
  *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
  */
 
+_.map = function(collection, action) {
+    var functCallResults = [];
+
+    if (_.typeOf(collection) === 'array') {
+        for (var i = 0; i < collection.length; i++) {
+            var element = collection[i];
+            functCallResults.push(action(element, i, collection));
+        }
+    }
+    else if (_.typeOf(collection) === 'object') {
+        for (var key in collection) {
+            var value = collection[key];
+            functCallResults.push(action(value, key, collection));
+        }
+    }
+    return functCallResults;
+}
 
 /** _.pluck()
  * Arguments:
@@ -207,6 +364,15 @@ var _ = {};
  *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
  */
 
+// _.pluck = function(array, property) {
+//     var valueArray = [];
+//     // _.map(array, _.map(array, valueArray.push(array, property)));
+//     for (var i = 0; i < array.length; i++) {
+//         var collection = array[i];
+//         _.map(collection, i, function() { valueArray.push(collection[property]) })
+//     }
+//     return valueArray;
+// }
 
 /** _.contains()
  * Arguments:
@@ -223,7 +389,10 @@ var _ = {};
  *   _.contains([1,"two", 3.14], "two") -> true
  */
 
-
+_.contains = function(array, value) {
+    var containsVal = _.indexOf(array, value);
+    return (containsVal === -1) ? false : true;
+}
 /** _.every()
  * Arguments:
  *   1) A collection
@@ -245,6 +414,9 @@ var _ = {};
  *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
  */
 
+_.every = function(collection, action) {
+
+}
 
 /** _.some()
  * Arguments:
