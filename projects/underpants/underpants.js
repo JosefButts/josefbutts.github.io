@@ -154,6 +154,7 @@ _.last = function(array, number) {
  *      -> should log "a" "b" "c" to the console
  */
 _.each = function(collection, givenFunction) {
+
     if (Array.isArray(collection)) {
         for (var i = 0; i < collection.length; i++) {
             var element = collection[i];
@@ -293,21 +294,24 @@ _.partition = function(array, action) {
  */
 _.unique = function(array) {
 
-    var dupArray = array;
+    //make a copy of the array values sing .slice() to avoid side effects
+    // arrays are apparently copy by reference so to do otherwise will alter
+    //the orinials array and cause negative side effects
+
+    var dupArray = array.slice(0);
 
     for (var i = dupArray.length - 1; i > -1; i--) {
         var valueSought = dupArray[i]; // value to search for duplicates
-        // var tempArray = array.splice(i, 1); //temp array with current search item removed
+
         var indexDuplicated = _.indexOf(dupArray, valueSought);
-        console.log("dup value is: " + dupArray[indexDuplicated] + " index is : " + i);
-        console.log('dupArray ' + dupArray);
+
 
         //if the current array element is duplicated splice out thie current element
         if (indexDuplicated > -1 && indexDuplicated !== i) {
-            // dupArray[i] = 'deleted!';
+
             dupArray.splice(i, 1);
-            // noDupArray.push(array[i]);
-            console.log('dupArray ' + dupArray);
+
+
 
         }
 
@@ -337,6 +341,7 @@ _.unique = function(array) {
 
 _.map = function(collection, action) {
     var functCallResults = [];
+    //functCallResults = (_.each(collection, action));
 
     if (_.typeOf(collection) === 'array') {
         for (var i = 0; i < collection.length; i++) {
@@ -350,8 +355,9 @@ _.map = function(collection, action) {
             functCallResults.push(action(value, key, collection));
         }
     }
+
     return functCallResults;
-}
+};
 
 /** _.pluck()
  * Arguments:
@@ -364,15 +370,27 @@ _.map = function(collection, action) {
  *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
  */
 
-// _.pluck = function(array, property) {
-//     var valueArray = [];
-//     // _.map(array, _.map(array, valueArray.push(array, property)));
-//     for (var i = 0; i < array.length; i++) {
-//         var collection = array[i];
-//         _.map(collection, i, function() { valueArray.push(collection[property]) })
-//     }
-//     return valueArray;
-// }
+_.pluck = function(array, property) {
+    // My crappy original way that is janky
+    var valueArray = [];
+    for (var i = 0; i < array.length; i++) {
+        var collection = array[i];
+        _.map(collection, function() { valueArray[i] = collection[property] });
+    }
+    return valueArray;
+
+
+    // //keys equals a function that returns the value of the given keys
+    // let keys = function(key) {
+    //     return function(obj) {
+    //         return obj[key];
+    //     };
+    // };
+    // return _.map(array, keys(property));
+
+    // bad attempt to make a one line solution
+    // return _.map(array, (property) => { return function(obj) { return obj[key]; }; };);
+};
 
 /** _.contains()
  * Arguments:
@@ -392,7 +410,8 @@ _.map = function(collection, action) {
 _.contains = function(array, value) {
     var containsVal = _.indexOf(array, value);
     return (containsVal === -1) ? false : true;
-}
+};
+
 /** _.every()
  * Arguments:
  *   1) A collection
@@ -416,7 +435,18 @@ _.contains = function(array, value) {
 
 _.every = function(collection, action) {
 
-}
+    //if action is present evaluate as specified
+    if (action) {
+        var valuesArray = _.map(collection, action); //results of running the action
+        return _.contains(valuesArray, false) ? false : true;
+    }
+    else if (!action) { // if no function is passed in eval for truthy
+        var valuesArray2 = _.map(collection, function(value) { return value; });
+        return _.contains(valuesArray2, false) ? false : true;
+        // return _.contains(collection, true);
+    }
+
+};
 
 /** _.some()
  * Arguments:
@@ -440,6 +470,20 @@ _.every = function(collection, action) {
  */
 
 
+_.some = function(collection, funct) {
+    if (funct) {
+        var valuesArray = _.map(collection, funct);
+        return _.contains(valuesArray, true) ? true : false;
+
+    }
+    else {
+        var valuesArray2 = _.map(collection, function(value) { return value; });
+        console.log(valuesArray2);
+        return _.contains(valuesArray2, true) ? true : false;
+    }
+
+};
+
 /** _.reduce()
  * Arguments:
  *   1) An array
@@ -458,6 +502,32 @@ _.every = function(collection, action) {
  * Examples:
  *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
  */
+_.reduce = function(array, funct, seed) {
+    var previousResult;
+    var workingArray = array.slice(0);
+
+
+    if (seed === 0 || seed) {
+        previousResult = seed;
+        for (var i = 0; i < workingArray.length; i++) {
+            previousResult = funct(previousResult, workingArray[i], i);
+        }
+    }
+    else {
+        previousResult = workingArray[0];
+        for (var i = 1; i < workingArray.length; i++) {
+            previousResult = funct(previousResult, workingArray[i], i);
+        }
+
+
+
+
+
+    }
+    return previousResult;
+
+
+};
 
 
 /** _.extend()
@@ -474,7 +544,20 @@ _.every = function(collection, action) {
  *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
  *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
  */
+_.extend = function(object1) {
+    var objects = arguments;
+    var length = objects.length;
 
+    for (var i = 1; i < length; i++) {
+        for (var key in objects[i]) {
+            var currentObj = arguments[i];
+            object1[key] = currentObj[key];
+        }
+
+    }
+
+    return object1;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

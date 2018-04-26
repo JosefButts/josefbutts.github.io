@@ -2,15 +2,31 @@
 Arithmetic
 Comparison
 Logical
-Binary (!, typeOf, -)
+unary (!, typeOf, -)
 Turnary (a ? b : c)
 */
 
 /* Javascript has unary, binay and (1) ternary operator.
-
-Assignment operator '=' assigns the lefthand value to the right hand variable. 
+Assignment operators:
 */
+
+//'=' assigns the lefthand value to the right hand variable. 
+
 let variable = 'Look here!';
+
+//+= assigns the left hand side variable the value of itself plus the right hand number
+var num = 1;
+num += 5; //num = 6
+//-= assigns the right hand side variable the value of itself minus the left hand numbe
+//and assigns the value to variable
+num -= 1; // num = 5
+//*= assigns the left hand variabel the value of the variable multiplied
+//by the righthand value
+num *= 5; //num = 25
+// /= assigns the lefthand variable the value of the variable divided by the righthand
+//value
+num /= 5; //num = 5
+
 
 /*comparison operators compare two valuesoperands and returns a boolean value.
  */
@@ -50,12 +66,15 @@ b--; // decrement, adds 2
 13 == 13 || 12 == 12; // returns true 
 
 
-// Binary (!, typeOf, -)
+// Unary (!, typeOf, -) these operators take one value
 //typeof returns the typeof data given
 let answer = typeof true;
 console.log(answer);
 
+//bang makes the statement the opposite of what it normally returns
+var trueFalse = !true; //false 
 //
+
 
 // Turnary (a ? b : c) these operators take 3 values, first a condition to be 
 // evaluated separated by a question mark from two values, the first value will 
@@ -63,8 +82,3 @@ console.log(answer);
 
 (50 < 120) ? 'This is true' : 'This is not true'; //returns 'This is true'
 (50 === 120) ? 'This is true' : 'This is not true' // returns 'This is not true'
-
-
-
-//Binary operators
-/* These take 2 oper */

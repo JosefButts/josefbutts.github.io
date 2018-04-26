@@ -13,7 +13,7 @@ let xyz = 'x' + 'y' + 'z'; // xyz = 'xyz'
 let blah = 'blah';
 console.log(xyz.concat(xyz)); // prints 'xyzblah'
 
-// we can access the individual characters in a string usig index notation
+// we can access the individual characters in a string using index notation
 
 console.log(xyz[1]); // prints 'y'
 
@@ -63,4 +63,10 @@ console.log(wow.substring(4, 6)); // prints 'wo'
 //the second specifying the length of the extracted string
 console.log(wow.substring(2, 5)); //prints 'wowow'
 
-//replace()
+//replace() returns  new string with some or all matches of a
+//pattern replaced by a replcement
+
+var stringToReplace = "operation spark is closed";
+var stringWithReplacement = stringToReplace.replace("closed", "open");
+
+console.log(stringWithReplacement); // logs "operation spark is open";
