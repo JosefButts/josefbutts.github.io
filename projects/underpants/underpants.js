@@ -196,7 +196,8 @@ _.indexOf = function(array, value) {
             return i;
         }
     }
-    return index;
+    return index; //could also just return -1 if the if condition isn't met
+    //redundant I think
 };
 
 /** _.filter()
@@ -223,6 +224,8 @@ _.filter = function(array, action) {
         }
     }
     return trueArray;
+
+    //go back and do this with .each
 };
 
 /** _.reject()
@@ -296,7 +299,7 @@ _.unique = function(array) {
 
     //make a copy of the array values sing .slice() to avoid side effects
     // arrays are apparently copy by reference so to do otherwise will alter
-    //the orinials array and cause negative side effects
+    //the orinials array and may cause negative side effects?
 
     var dupArray = array.slice(0);
 
