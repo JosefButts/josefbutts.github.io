@@ -109,7 +109,7 @@ function countBs(string) {
 
 countBs('BBBBBbba');
 
-function countChars(string, char) {
+function countChar(string, char) {
     var charCount = 0;
     // var N = string.length-1;
     var modString = string;
@@ -168,7 +168,13 @@ console.log(sum(testArray));
 console.log(sum(range(1, 10)));
 var arrayTest = [1, 2, 3, 4, 5, 6, 7];
 
-
+function reverseArray(array) {
+    var revArray = [];
+    for (let i = array.length - 1; i > -1; i--) {
+        revArray.push(array[i]);
+    }
+    return revArray;
+}
 
 function reverseArrayInPlace(array) {
     for (let i = 0; i < Math.floor(array.length / 2); i++) {
@@ -267,32 +273,6 @@ console.log(mergedArray);
 
 //Higher order loop function
 
-function countBy(items, groupName) {
-    let counts = [];
-    for (let item of items) {
-        let name = groupName(item);
-        let known = counts.findIndex(c => c.name == name);
-        if (known == -1) {
-            counts.push({ name, count: 1 });
-        }
-        else {
-            counts[known].count++;
-        }
-    }
-    return counts;
-}
-
-function characterScript(code) {
-    for (let script of SCRIPTS) {
-        if (script.ranges.some(([from, to]) => {
-                return code >= from && code < to;
-            })) {
-            return script;
-        }
-    }
-    return null;
-}
-
 function loop(value, testFunct, updateFunct, body) {
     var value1 = value;
     while (testFunct(value1)) {
@@ -302,6 +282,7 @@ function loop(value, testFunct, updateFunct, body) {
     }
 
 };
+
 
 loop(3, n => n > 0, n => n - 1, console.log);
 
@@ -323,4 +304,53 @@ function every(array, test) {
     if (array.some()) {
         return false;
     }
+}
+
+//
+
+
+//dominant direction hubub below here
+
+
+function characterScript(code) {
+    for (let script of SCRIPTS) {
+        if (script.ranges.some(([from, to]) => {
+                return code >= from && code < to;
+            })) {
+            return script;
+        }
+    }
+    return null;
+}
+
+function textScripts(text) {
+    let scripts = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        return script ? script.name : "none";
+    }).filter(({ name }) => name != "none");
+
+    let total = scripts.reduce((n, { count }) => n + count, 0);
+    if (total == 0) return "No scripts found";
+
+    return scripts.map(({ name, count }) => {
+        return `${Math.round(count * 100 / total)}% ${name}`;
+    }).join(", ");
+}
+
+console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
+// → 61% Han, 22% Latin, 17% Cyrillic
+
+function countBy(items, groupName) {
+    let counts = [];
+    for (let item of items) {
+        let name = groupName(item);
+        let known = counts.findIndex(c => c.name == name);
+        if (known == -1) {
+            counts.push({ name, count: 1 });
+        }
+        else {
+            counts[known].count++;
+        }
+    }
+    return counts;
 }

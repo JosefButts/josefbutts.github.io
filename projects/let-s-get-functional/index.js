@@ -130,14 +130,7 @@ var topThreeTags = function(array) {
         });
     });
 
-    //generate a list of unique tags
-    // var tags = _.unique(tagList).sort();
-    // var tagObj = {}; //create an object to hold tags
-    // //make a key in the object for each tag with 0 as value
-    // _.each(tags, function(element, index, array) {
-    //     var tempTag = array[index];
-    //     tagObj[tempTag] = 0;
-    // })
+
     var tagObj = {}; //create an object to hold tags/counts
     //iterate over array and create keys/count occurences
     _.each(tagList, function(element, index, array) {
