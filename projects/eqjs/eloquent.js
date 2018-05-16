@@ -73,11 +73,16 @@ min(2, 1);
 
 
 function isEven(number) {
-    var current = number;
+    // var current = number;
 
     function evenCheck(current) {
-        if (current < 0) {
-            current = Math.abs(current);
+        // if (current < 0) {
+        //     current = Math.abs(current);
+        // }
+        //above is my original code which produced undefined when run with -1
+        //the Eloquent Javascript had it returning "??" so I changed it accordingly
+        if (current === -1) {
+            return "??";
         }
         else if (current === 0) {
             return true;
@@ -267,7 +272,7 @@ var mergedArray = arrays.reduce(function(previousResult, value, seed) {
     previousResult = previousResult.concat(value);
     return previousResult;
 
-})
+});
 
 console.log(mergedArray);
 
@@ -301,56 +306,60 @@ function every(array, test) {
 //every function using some()
 
 function every(array, test) {
-    if (array.some()) {
-        return false;
-    }
+    //anon function returns true if ANY element in the return falsey
+    //when function is called on it. Bang array.some then returns false if it's true
+    //that some element in the array returns falsey. If any element returns falsey
+    //than every can't be true.
+    return !array.some(function(element) { return !test(element) });
 }
+
+console.log(every([1, 3, 5], n => n < 10));
+// → true
+console.log(every([2, 4, 16], n => n < 10));
+// → false
+console.log(every([], n => n < 10));
+// → true
 
 //
 
 
 //dominant direction hubub below here
 
+function dominantDirection(txt) {
 
-function characterScript(code) {
-    for (let script of SCRIPTS) {
-        if (script.ranges.some(([from, to]) => {
-                return code >= from && code < to;
-            })) {
-            return script;
-        }
-    }
-    return null;
-}
+    //helper function from earlier in the chapter which 
+    //takes the text, invokes countBy which takes in text and char
+    // and invokes characterScript which ids the script, pasing back it's name to countBy
+    //countBy then updates the name and count in an array of objects
+    //countBy returns that array of objects to the variable countedScripts
 
-function textScripts(text) {
-    let scripts = countBy(text, char => {
+    let countedScripts = countBy(txt, function(char) {
         let script = characterScript(char.codePointAt(0));
-        return script ? script.name : "none";
+        return script ? script.direction : "none";
     }).filter(({ name }) => name != "none");
 
-    let total = scripts.reduce((n, { count }) => n + count, 0);
-    if (total == 0) return "No scripts found";
+    //if the array of counted scripts has a length of 0 then there are no scripts, 
+    //or possible no recoginized scripts in the array so "ltr" is returned
 
-    return scripts.map(({ name, count }) => {
-        return `${Math.round(count * 100 / total)}% ${name}`;
-    }).join(", ");
+    if (countedScripts.length === 0) return "ltr";
+
+    //if the array has length we need to then determin which script is most dominant
+    //and then reference it's direction information in the SCRIPTS array
+    return countedScripts.reduce(function(a, b) { return a.count > b.count ? a : b }).name;
+
+
+
+
+
+
 }
 
-console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
-// → 61% Han, 22% Latin, 17% Cyrillic
+console.log(dominantDirection("Hello!"));
+// → ltr
+console.log(dominantDirection("Hey, مساء الخير"));
+// → rtl
 
-function countBy(items, groupName) {
-    let counts = [];
-    for (let item of items) {
-        let name = groupName(item);
-        let known = counts.findIndex(c => c.name == name);
-        if (known == -1) {
-            counts.push({ name, count: 1 });
-        }
-        else {
-            counts[known].count++;
-        }
-    }
-    return counts;
-}
+console.log(dominantDirection("Hello!"));
+// → ltr
+console.log(dominantDirection("Hey, مساء الخير"));
+// → rtl

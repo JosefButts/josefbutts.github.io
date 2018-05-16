@@ -101,10 +101,23 @@ var sumBelow = function(n) {
 sumBelow(-10); // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
-    if (num === )
 
-        return x + sumRange(x + 1);
+    let rangeArray = [];
+
+    function sumRange(num) {
+        if (!rangeArray[0]) {
+            rangeArray[0] = x + 1;
+        }
+        else if (num < y - 1) {
+            return rangeArray;
+        }
+        else {
+            return rangeArray.concat(sumRange(num + 1));
+        }
+    }
+    sumRange(x);
 };
+//return x + sumRange(x + 1);
 
 
 
@@ -125,7 +138,9 @@ var exponent = function(base, exp) {};
 var powerOfTwo = function(n) {};
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {};
+var reverse = function(string) {
+
+};
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {};
